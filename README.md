@@ -53,7 +53,7 @@ df1, map = nydate.choose_my_art_date(my_location = 'Columbia University', google
 
 ![map example](https://github.com/QMSS-G5072-2021/Xu_Connie_Ye/blob/master/Final_Project/ny_artsy_date/docs/map_example.png)
 
-*For more detailed usage cases, please refer to [Usage Vignette]().*
+*For more detailed usage cases, please refer to [Usage Vignette](https://github.com/connixu/ny_artsy_date/blob/main/docs/vignette_example.ipynb).*
 
 ## Contributing
 
