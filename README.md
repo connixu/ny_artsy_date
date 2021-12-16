@@ -69,4 +69,4 @@ Interested in contributing? Check out the contributing guidelines. Please note t
 
 ## Contact Info
 
-If you have any questions or feedback about this package, or if you wish to report a concern, please contact me at yx2625@columbia.edu. 
+If you have any questions, concerns, or feedback about this package, please contact me at yx2625@columbia.edu. 
