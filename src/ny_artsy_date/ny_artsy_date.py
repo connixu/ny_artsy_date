@@ -128,7 +128,7 @@ def find_my_art_events(my_location = None, google_maps_key = None, lat = None, l
                 Default: False or 0
             max_results(int): Max results to be returned in Query - can be 5, 10, 20, 50 
                 Default: np.NaN
-            search_range(str): distance (in meters) from location for events queried - can be '500m',"1000m","1500m","3000m"
+            search_range(str/float): distance (in meters) from location for events queried - can be '500m',"1000m","1500m","3000m"
                 Default: 500m
             mapping(bool): Boolean param specifying whether user wants a simple interactive map returned of matching locations
 
