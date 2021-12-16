@@ -139,6 +139,7 @@ def find_my_art_events(my_location = None, google_maps_key = None, lat = None, l
                 Event_Name(str): Name of Event 
                 Event_Description(str): Details about event
                 Event_Price_Adult(float): Price for tickets
+                Event_Price_Detailed(str)): Price for tickets (detailed info)
                 DateEnd(date): Last date for exhibit or installation
                 Event_Lat(float): Latitude of event 
                 Event_Lon(float): Longitude of event
@@ -195,7 +196,7 @@ def find_my_art_events(my_location = None, google_maps_key = None, lat = None, l
             string = df.at[i,'Price'].lower()
             if (string == 'free'):
                 df.at[i,'Event_Price_Adult'] = 0 
-            elif ('suggest' in string): # e.g., suggested donate
+            elif ('suggest' in string) and  ('donate' or 'donation' or 'contribute' or 'contribution' in string) : # e.g., suggested donate
                 df.at[i,'Event_Price_Adult'] = 0
             elif [re.search(r'(adult|adults|admission)(\s|\s\$|\s\:|\:\s|\:\s\$|\:\$)(\d{1,2})', string)] != [None]:
                 j = j+1 
@@ -215,8 +216,8 @@ def find_my_art_events(my_location = None, google_maps_key = None, lat = None, l
         raise ValueError("search range must be 0,1, True, or False")
         
     df['url'] = df['href']
-    df = df.rename(columns = {'Name':'Event_Name','Description':'Event_Description','Latitude':'Event_Lat','Longitude':'Event_Lon'})
-    df = df[['Event_Name','Event_Description','DateEnd','Distance','Event_Lat','Event_Lon','Event_Price_Adult','url',]]
+    df = df.rename(columns = {'Name':'Event_Name','Description':'Event_Description','Latitude':'Event_Lat','Longitude':'Event_Lon','Price':'Event_Price_Detailed'})
+    df = df[['Event_Name','Event_Description','DateEnd','Distance','Event_Lat','Event_Lon','Event_Price_Adult','url','Event_Price_Detailed']]
    
     if google_maps_key != None:  
         if google_maps_key.startswith('AI'):
