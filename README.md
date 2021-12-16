@@ -1,6 +1,10 @@
 # ny_artsy_date
 
-A Python package to provide easy access to current and upcoming art-based events within a walkable / bikeable distance (500-3000 meters) in the New York Metro area using NYC ArtBeats and Google Maps API's.
+This is a Python package to help making creatives plan dates and outings by providing easy access to current and upcoming art-based events and restaurants within the NYC Metro area by wrapping the [NYC ArtBeats API](https://www.nyartbeat.com/resources/doc/api) and by leveraging the [Google Maps API's](https://developers.google.com/maps) as accessed through [googlemaps package](https://github.com/googlemaps/google-maps-services-python) as well as [gmaps](https://pypi.org/project/gmaps/) package).
+
+The functions within return data tables and maps as needed based on a specified search radius of a starting address. There is also a function (for those who like spontanaeity) to `choose_my_art_date`, which selects one art-based event and one restaurant nearby based on a starting point. Users can further adjust for a variety of needs, such as search radius from starting point, whether the event is free, and minimum Google Places Rating (for the restaurant). 
+
+Note: this package is dependent on the `googlemaps` and `gmaps` packages, which acces the Google Maps API. Users should obtain a Google Maps API key to use this package to its full capacity.
 
 ## Installation
 
@@ -11,8 +15,9 @@ You can also clone this Github Repository.
 
 ## Usage
 
-For more detailed usage cases, please refer to [Usage Vignette](). Below are two samples of use cases: 
+Below are two samples of simple use cases for this package: 
 
+#### Finding art event details near Chelsea Market
 ```Python
 from ny_artsy_date import ny_artsy_date as nydate
 nydate.find_my_art_events(my_location = 'Chelsea Market', google_maps_key = API_KEY, free_only = 1)
@@ -42,9 +47,11 @@ nydate.find_my_art_events(my_location = 'Chelsea Market', google_maps_key = API_
 5  456 W 18th St, New York, NY 10011, USA  
 6  456 W 18th St, New York, NY 10011, USA 
 
+#### Pick an "artsy date" near Columbia University 
+
 ```Python
 from ny_artsy_date import ny_artsy_date as nydate
-df1, map = nydate.choose_my_art_date(my_location = 'Columbia University', google_maps_key = API_KEY, search_range = 3000,mapping = 1)
+df1, map = nydate.choose_my_art_date(my_location = 'Columbia University', google_maps_key = API_KEY, search_range = 3000, mapping = 1)
 ```
 |    | Field              | Value                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
 |---:|:-------------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -67,6 +74,8 @@ df1, map = nydate.choose_my_art_date(my_location = 'Columbia University', google
 | 28 | Restaurant_Lon     | -73.9536111                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
 map1
 
+For more detailed usage cases, please refer to [Usage Vignette](). 
+
 ## Contributing
 
 Interested in contributing? Check out the contributing guidelines. Please note that this project is released with a Code of Conduct. By contributing to this project, you agree to abide by its terms.
@@ -78,3 +87,7 @@ Interested in contributing? Check out the contributing guidelines. Please note t
 ## Credits
 
 `ny_artsy_date` was created with [`cookiecutter`](https://cookiecutter.readthedocs.io/en/latest/) and the `py-pkgs-cookiecutter` [template](https://github.com/py-pkgs/py-pkgs-cookiecutter).
+
+## Contact Info
+
+If you have any questions or feedback about this package, or if you wish to report a concern, please contact me at yx2625@columbia.edu. 
