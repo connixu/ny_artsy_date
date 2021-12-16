@@ -11,7 +11,7 @@ Note: this package is dependent on the `googlemaps` and `gmaps` packages, which 
 ```bash
 $ pip install ny_artsy_date
 ```
-You can also clone this Github Repository.
+You can also clone [this Github Repository](https://github.com/connixu/ny_artsy_date).
 
 ## Usage
 Below are two samples of simple use cases for this package: 
