@@ -11,9 +11,12 @@ Note: this package is dependent on the `googlemaps` and `gmaps` packages, which 
 ```bash
 $ pip install ny_artsy_date
 ```
-You can also clone this Github Repository.
+You can also clone [this Github Repository](https://github.com/connixu/ny_artsy_date).
 
 ## Usage
+
+*For more detailed usage cases, please refer to [Usage Vignette](https://github.com/connixu/ny_artsy_date/blob/main/docs/vignette_example.ipynb).*
+
 Below are two samples of simple use cases for this package: 
 
 #### Finding art event details near Chelsea Market
@@ -51,9 +54,7 @@ df1, map = nydate.choose_my_art_date(my_location = 'Columbia University', google
 | 26 | Restaurant_Lat     | 40.7825                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
 | 28 | Restaurant_Lon     | -73.9536111                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
 
-![map example](https://github.com/connixu/ny_artsy_date/blob/main/docs/map_example.png)
-
-*For more detailed usage cases, please refer to [Usage Vignette](https://github.com/connixu/ny_artsy_date/blob/main/docs/vignette_example.ipynb).*
+<img src="https://github.com/connixu/ny_artsy_date/blob/main/docs/map_example.png" width="850" height="380">
 
 ## Contributing
 
