@@ -1,10 +1,13 @@
 [tool.poetry]
 name = "ny_artsy_date"
 version = "0.1.1"
-description = "A Python package to provide easy access to current and upcoming art-based events within a walkable / bikeable distance (500-3000 meters) in the New York Metro area using NYC ArtBeats and Google Maps API's."
+description = "This is a Python package to help plan dates and outings by providing information about art-based events and restaurants within the NYC Metro area based on an initial meeting point. This package serves as a wrapper for the NYC ArtBeats API and leverages various functionalities from the Google Maps API to make planning artsy dates and gatherings simple and fun."
 authors = ["Connie (Ye) Xu "]
 license = "MIT"
 readme = "README.md"
+documentation = 'https://ny-artsy-date.readthedocs.io'
+homepage = "https://github.com/connixu/ny_artsy_date"
+repository = "https://github.com/connixu/ny_artsy_date"
 
 [tool.poetry.dependencies]
 python = ">=3.9,<3.11"
