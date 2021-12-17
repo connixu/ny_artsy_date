@@ -56,6 +56,10 @@ df1, map = nydate.choose_my_art_date(my_location = 'Columbia University', google
 
 <img src="https://github.com/connixu/ny_artsy_date/blob/main/docs/map_example.png" width="850" height="380">
 
+## Official Documentation
+The official documentation is hosted on Read the Docs: https://ny-artsy-date.readthedocs.io/en/latest/
+
+
 ## Contributing
 
 Interested in contributing? Check out the contributing guidelines. Please note that this project is released with a Code of Conduct. By contributing to this project, you agree to abide by its terms.
