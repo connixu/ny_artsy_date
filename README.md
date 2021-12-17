@@ -14,6 +14,9 @@ $ pip install ny_artsy_date
 You can also clone [this Github Repository](https://github.com/connixu/ny_artsy_date).
 
 ## Usage
+
+*For more detailed usage cases, please refer to [Usage Vignette](https://github.com/connixu/ny_artsy_date/blob/main/docs/vignette_example.ipynb).*
+
 Below are two samples of simple use cases for this package: 
 
 #### Finding art event details near Chelsea Market
@@ -52,8 +55,6 @@ df1, map = nydate.choose_my_art_date(my_location = 'Columbia University', google
 | 28 | Restaurant_Lon     | -73.9536111                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
 
 <img src="https://github.com/connixu/ny_artsy_date/blob/main/docs/map_example.png" width="850" height="380">
-
-*For more detailed usage cases, please refer to [Usage Vignette](https://github.com/connixu/ny_artsy_date/blob/main/docs/vignette_example.ipynb).*
 
 ## Contributing
 
