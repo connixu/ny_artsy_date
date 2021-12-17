@@ -1,0 +1,244 @@
+:py:mod:`ny_artsy_date.ny_artsy_date`
+=====================================
+
+.. py:module:: ny_artsy_date.ny_artsy_date
+
+
+Module Contents
+---------------
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   ny_artsy_date.ny_artsy_date.geocoding
+   ny_artsy_date.ny_artsy_date.map_events
+   ny_artsy_date.ny_artsy_date.find_my_art_events
+   ny_artsy_date.ny_artsy_date.find_my_dinner
+   ny_artsy_date.ny_artsy_date.choose_my_art_date
+
+
+
+.. py:function:: geocoding(my_location, google_maps_key)
+
+   Function to obtain latitude and longitude as needed given simple address data. This package interacts with google maps API
+   to create our visualization, thus an API key is required.
+
+       Args
+       ----
+       Required:
+           my_location(str): Starting point address - must be within NYC Metro Location
+           google_maps_key (str): Google maps API key needed to geocode your location
+               To obtain a google maps API key, please refer to https://developers.google.com/maps
+
+       Returns
+       ---
+       Latitude and Longitude
+           Fields:
+               lat(float): Latitude of location
+               lon(float): Longitude of location
+
+       Usage Example
+       ---
+       [in]:
+           geocode_events("Met Museum", google_maps_key)
+
+       [out]:
+           [40.7794, -73.9632]
+
+
+.. py:function:: map_events(df, google_maps_key, lat_column, long_column, name_column, start_lon=None, start_lat=None)
+
+   Function to map latitude and longitude as needed given simple address dataframe. This package interacts with google maps API
+   to create our visualization, thus an API key is required.
+
+       Args
+       ----
+       Required:
+           df(str): Starting point address - must be within NYC Metro Location
+           google_maps_key (str): Google maps API key needed to geocode your location
+               To obtain a google maps API key, please refer to https://developers.google.com/maps
+           lat_column(str): name of df column containing latitude data we need (events, restaurants, etc)
+           long_column(str): name of df column containing latitude data we need (events, restaurants, etc)
+               To obtain a google maps API key, please refer to https://developers.google.com/maps
+           name_column(str): name of df column containing name data we need (events, restaurants, etc)
+       Optional:
+           start_lon: longitudinal data of starting point
+           start_lat: latitudinal data of starting point
+
+       Returns
+       ---
+       Google Map with markers at the specified points
+
+       Usage Example
+       ---
+       [in]:
+           map_events(df, google_maps_key,'Lat','Long','Name')
+
+       [out]:
+           Map (Optional): Interactive Google Maps Output with Hover Text Description of Data Point
+
+
+.. py:function:: find_my_art_events(my_location=None, google_maps_key=None, lat=None, lon=None, free_only=0, max_results=np.NaN, search_range='500m', mapping=False)
+
+   Function to obtain art events data in the NY Metro area near a specified location (address OR latitude and longitude format),
+   using the NY ArtBeat API found at https://www.nyartbeat.com/resources/doc/api. Returns table with events matching a specified radius
+   from a specified location as well as map if requested.
+
+       Args
+       ----
+       Required:
+           my_location(str): Address starting point - Must be within NYC Metro Location
+               Default: None
+           google_maps_key (str): Google maps API key needed to geocode your location
+               To obtain a google maps API key, please refer to https://developers.google.com/maps
+               Default: None, OR
+           lat(float): Latitude of starting point - Must be within NYC Metro Location
+               Default: None
+           lon(float): Longitude of starting point - Must be within NYC Metro Location
+               Default: None
+       Optional:
+           google_maps_key (str): Google maps API key needed to geocode your location OPTIONAL if you have lat-lon location data
+               To obtain a google maps API key, please refer to https://developers.google.com/maps
+               Default: None
+           free_only(bool): Boolean param specifying whether to only return free events
+               Default: False or 0
+           max_results(int): Max results to be returned in Query - can be 5, 10, 20, 50
+               Default: np.NaN
+           search_range(str/float): distance (in meters) from location for events queried - can be '500m',"1000m","1500m","3000m"
+               Default: 500m
+           mapping(bool): Boolean param specifying whether user wants a simple interactive map returned of matching locations
+
+       Returns
+       ---
+       DataFrame with [max_results] art events in the New York Metro area in the [radius] of the [specified location]
+           Fields:
+               Event_Name(str): Name of Event
+               Event_Description(str): Details about event
+               Event_Price_Adult(float): Price for tickets
+               Event_Price_Detailed(str)): Price for tickets (detailed info)
+               DateEnd(date): Last date for exhibit or installation
+               Event_Lat(float): Latitude of event
+               Event_Lon(float): Longitude of event
+               Event_Address(str): Address for event - requires geocoding; google maps key (above).
+       Map (Optional): Interactive Google Maps Output with Markers for each event; Hover Text Description of Event
+
+       Usage Example
+       ---
+       [in]:
+           find_my_art_events(lat = 40.78, lon = -73.96, search_range = '3000m', max_results = 5)
+       [out]:
+           df
+           | Event_Name | Event_Description         | Price      | DateEnd | Distance | Latitude | Longitude | Event_Address                 |
+           |------------|---------------------------|------------|---------|----------|----------|-----------|-------------------------------|
+           | The..      | The Costume Institute’s...| Adults $25 | 2022-09 |    90.158|    40.779|    -73.96 | 1005 5th Ave, New York...     |
+       [out]:
+           Interactive Map
+
+
+
+.. py:function:: find_my_dinner(google_maps_key, my_location=None, mapping=False, lat=None, lon=None, search_range=500, min_rating=4.3)
+
+   Returns Restaurant List within a specified range at a specified minimum rating (address OR latitude and longitude format).
+       Args
+       ----
+       Required:
+           my_location(str): Address starting point - Must be within NYC Metro Location
+               Default: None
+           google_maps_key (str): Google maps API key needed to geocode your location
+               To obtain a google maps API key, please refer to https://developers.google.com/maps
+               Default: None, OR
+           lat(float): Latitude of starting point - Must be within NYC Metro Location
+               Default: None
+           lon(float): Longitude of starting point - Must be within NYC Metro Location
+               Default: None
+       Optional:
+           search_range(float): Distance from starting point (radius for search, meters)
+               Default: 500
+           min_rating(float): should be 1-5
+               Default: 4.3
+           mapping(bool): Boolean param specifying whether user wants a simple interactive map returned of matching locations
+               Default: False
+
+       Returns
+       ---
+       DataFrame with [max_results] restaurants in the New York Metro area in the [radius] of the [specified location]
+           Fields:
+               Restaurant_Name(str): Name of restaurant
+               Price_Level(str): $ - $$$$
+               Restaurant_Rating(float): 1-5
+               Restaurant_Address(str): Distance from starting point (my location)
+               Restaurant_Lat(float): Latitude of restaurant
+               Restaurant_Lon(float): Longitude of restaurant
+       Map (Optional): Interactive Google Maps Output with Markers for each restaurant; Hover Text Description of Restaurant
+
+       Usage Example
+       ---
+       [in]:
+           find_my_dinner(my_location = '314 11th Ave, New York',google_maps_key = google_maps_key)
+       [out]:
+           df
+           | Restaurant_Name | Price_Level      | Restaurant_Rating | Restaurant_Address |
+           |-----------------|------------------|-------------------|--------------------|
+           | The Four Seasons| $$$$             | 4.5               |      '1234 Main St'|
+       [out]:
+           Interactive Map
+
+
+.. py:function:: choose_my_art_date(my_location, google_maps_key, mapping=False, search_range=500, min_rating=4.3)
+
+   Function to select an artsy date and dinner; randomly selects local arts event from NY ArtBeat API
+   found at https://www.nyartbeat.com/resources/doc/api, and uses the arts event data to determine a nearby restaurant.
+
+       Args
+       ----
+       Required:
+           my_location(str): Starting point address - must be within NYC Metro Location
+           google_maps_key (str): Optional google maps API key needed to geocode your location
+               To obtain a google maps API key, please refer to https://developers.google.com/maps
+       Optional:
+           search_range(float): Distance from starting point (radius for search, meters)
+               Default: 500
+           min_rating(float): should be 1-5
+               Default: 4.3
+           mapping(bool): Boolean param specifying whether user wants a simple interactive map returned of matching locations
+               Default: False
+
+       Returns
+       ---
+       DataFrame with [max_results] art events in the New York Metro area in the [radius] of the [specified location]
+           Fields:
+               Event_Name(str): Name of Event
+               Event_Description(str): Details about event
+               Event_Price_Adult(float): Price for tickets
+               DateEnd(date): Last date for exhibit or installation
+               Event_Lat(float): Latitude of event
+               Event_Lon(float): Longitude of event
+               Event_Address(str): Address for event - requires geocoding.
+               Restaurant_Name(str): Name of restaurant
+               Price_Level(str): $ - $$$$
+               Restaurant_Rating(float): 1-5
+               Restaurant_Address(str): Distance from starting point (my location)
+               Restaurant_Lat(float): Latitude of restaurant
+               Restaurant_Lon(float): Longitude of restaurant
+       Map (Optional): Interactive Google Maps Output with Markers for selected restaurant and selected event.
+
+       Usage Example
+       ---
+       [in]:
+           choose_my_art_date("Met Museum", google_maps_key)
+       [out]:
+           df
+               | Event_Name        | Eugène Leroy “About Marina”
+               | Event_Description | Michael Werner Gallery, New York presents an e...
+               | Price             | Free
+               | DateEnd           | 2021-12-23
+               | Distance          | 438.962726
+               | Event_Lat         | 40.775625
+               ...
+       [out]:
+           Interactive Map
+
+

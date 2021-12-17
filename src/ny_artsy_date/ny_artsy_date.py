@@ -102,7 +102,7 @@ def map_events(df, google_maps_key, lat_column, long_column, name_column, start_
     return fig
 
 
-def find_my_art_events(my_location = None, google_maps_key = None, lat = None, lon = None, free_only = 0, max_results = np.NaN, search_range = '500m', mapping = False):
+def find_my_art_events(my_location = None, google_maps_key = None, lat = None, lon = None, free_only = 0, max_results = 10, search_range = '500m', mapping = False):
     """
     Function to obtain art events data in the NY Metro area near a specified location (address OR latitude and longitude format), 
     using the NY ArtBeat API found at https://www.nyartbeat.com/resources/doc/api. Returns table with events matching a specified radius 
@@ -127,7 +127,7 @@ def find_my_art_events(my_location = None, google_maps_key = None, lat = None, l
             free_only(bool): Boolean param specifying whether to only return free events 
                 Default: False or 0
             max_results(int): Max results to be returned in Query - can be 5, 10, 20, 50 
-                Default: np.NaN
+                Default: 10
             search_range(str/float): distance (in meters) from location for events queried - can be '500m',"1000m","1500m","3000m"
                 Default: 500m
             mapping(bool): Boolean param specifying whether user wants a simple interactive map returned of matching locations
@@ -317,6 +317,7 @@ def find_my_dinner(google_maps_key, my_location = None, mapping = False, lat = N
                                                         np.where(nearby_restaurants_df['Price_Level'] ==1, '$',np.NaN))))
 
     nearby_restaurants_df = nearby_restaurants_df[nearby_restaurants_df['Restaurant_Rating'] > min_rating]
+    nearby_restaurants_df = nearby_restaurants_df.reset_index().drop(columns = 'index')
 
     if mapping == True: 
         nymap = map_events(nearby_restaurants_df, google_maps_key, start_lat = lat, start_lon = lon, \

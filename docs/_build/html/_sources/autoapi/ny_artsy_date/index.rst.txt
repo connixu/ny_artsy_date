@@ -1,0 +1,23 @@
+:py:mod:`ny_artsy_date`
+=======================
+
+.. py:module:: ny_artsy_date
+
+
+Submodules
+----------
+.. toctree::
+   :titlesonly:
+   :maxdepth: 1
+
+   ny_artsy_date/index.rst
+
+
+Package Contents
+----------------
+
+.. py:data:: __version__
+   
+
+   
+

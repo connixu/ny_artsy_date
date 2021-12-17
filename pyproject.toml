@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "ny_artsy_date"
-version = "0.1.0"
+version = "0.1.1"
 description = "A Python package to provide easy access to current and upcoming art-based events within a walkable / bikeable distance (500-3000 meters) in the New York Metro area using NYC ArtBeats and Google Maps API's."
 authors = ["Connie (Ye) Xu "]
 license = "MIT"
@@ -19,6 +19,9 @@ pytest-cov = "^3.0.0"
 
 [tool.poetry.dev-dependencies]
 pytest = "^6.2.5"
+myst-nb = "^0.13.1"
+sphinx-autoapi = "^1.8.4"
+sphinx-rtd-theme = "^1.0.0"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

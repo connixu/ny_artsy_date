@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ny_artsy_date &mdash; ny_artsy_date  documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/togglebutton.css" type="text/css" />
+      <link rel="stylesheet" href="_static/mystnb.css" type="text/css" />
+      <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/togglebutton.js"></script>
+        <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Changelog" href="changelog.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="#" class="icon icon-home"> ny_artsy_date
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="conduct.html">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference internal" href="autoapi/index.html">API Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">ny_artsy_date</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="#" class="icon icon-home"></a> &raquo;</li>
+      <li>ny_artsy_date</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/index.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section class="tex2jax_ignore mathjax_ignore" id="ny-artsy-date">
+<h1>ny_artsy_date<a class="headerlink" href="#ny-artsy-date" title="Permalink to this headline"></a></h1>
+<p>This is a Python package to help making creatives plan dates and outings by providing easy access to current and upcoming art-based events and restaurants within the NYC Metro area by wrapping the <a class="reference external" href="https://www.nyartbeat.com/resources/doc/api">NYC ArtBeats API</a> and by leveraging the <a class="reference external" href="https://developers.google.com/maps">Google Maps API’s</a> as accessed through <a class="reference external" href="https://github.com/googlemaps/google-maps-services-python">googlemaps package</a> as well as <a class="reference external" href="https://pypi.org/project/gmaps/">gmaps</a> package).</p>
+<p>The functions within return data tables and maps as needed based on a specified search radius of a starting address. There is also a function (for those who like spontanaeity) to <code class="docutils literal notranslate"><span class="pre">choose_my_art_date</span></code>, which selects one art-based event and one restaurant nearby based on a starting point. Users can further adjust for a variety of needs, such as search radius from starting point, whether the event is free, and minimum Google Places Rating (for the restaurant).</p>
+<p>Note: this package is dependent on the <code class="docutils literal notranslate"><span class="pre">googlemaps</span></code> and <code class="docutils literal notranslate"><span class="pre">gmaps</span></code> packages, which acces the Google Maps API. Users should obtain a Google Maps API key to use this package to its full capacity.</p>
+<section id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline"></a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ pip install ny_artsy_date
+</pre></div>
+</div>
+<p>You can also clone this Github Repository.</p>
+</section>
+<section id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this headline"></a></h2>
+<p>Below are two samples of simple use cases for this package:</p>
+<section id="finding-art-event-details-near-chelsea-market">
+<h3>Finding art event details near Chelsea Market<a class="headerlink" href="#finding-art-event-details-near-chelsea-market" title="Permalink to this headline"></a></h3>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ny_artsy_date</span> <span class="kn">import</span> <span class="n">ny_artsy_date</span> <span class="k">as</span> <span class="n">nydate</span>
+<span class="n">nydate</span><span class="o">.</span><span class="n">find_my_art_events</span><span class="p">(</span><span class="n">my_location</span> <span class="o">=</span> <span class="s1">&#39;Chelsea Market&#39;</span><span class="p">,</span> <span class="n">google_maps_key</span> <span class="o">=</span> <span class="n">API_KEY</span><span class="p">,</span> <span class="n">free_only</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="text-align:right head"><p></p></th>
+<th class="text-align:left head"><p>Event_Name</p></th>
+<th class="text-align:left head"><p>Event_Description</p></th>
+<th class="text-align:left head"><p>DateEnd</p></th>
+<th class="text-align:right head"><p>Distance</p></th>
+<th class="text-align:right head"><p>Event_Lat</p></th>
+<th class="text-align:right head"><p>Event_Lon</p></th>
+<th class="text-align:right head"><p>Event_Price_Adult</p></th>
+<th class="text-align:left head"><p>url</p></th>
+<th class="text-align:left head"><p>Event_Address</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-align:right"><p>0</p></td>
+<td class="text-align:left"><p>Maria Lassnig “The Paris Years, 1960–68”</p></td>
+<td class="text-align:left"><p>Petzel presents Maria Lassnig: The Paris Years, 1960–68, an exhibition of paintings by the Austrian artist that have rarely been seen in the United States. The show, which includes over 20 important works developed in Lassnig’s studio on rue de Begnolet, covers Lassnig’s formative years in the City of Light.</p></td>
+<td class="text-align:left"><p>2021-12-17</p></td>
+<td class="text-align:right"><p>198.808</p></td>
+<td class="text-align:right"><p>40.7442</p></td>
+<td class="text-align:right"><p>-74.006</p></td>
+<td class="text-align:right"><p>0</p></td>
+<td class="text-align:left"><p>http://www.nyartbeat.com/event/2021/F832</p></td>
+<td class="text-align:left"><p>456 W 18th St, New York, NY 10011, USA</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="pick-an-artsy-date-near-columbia-university">
+<h3>Pick an “artsy date” near Columbia University<a class="headerlink" href="#pick-an-artsy-date-near-columbia-university" title="Permalink to this headline"></a></h3>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ny_artsy_date</span> <span class="kn">import</span> <span class="n">ny_artsy_date</span> <span class="k">as</span> <span class="n">nydate</span>
+<span class="n">df1</span><span class="p">,</span> <span class="nb">map</span> <span class="o">=</span> <span class="n">nydate</span><span class="o">.</span><span class="n">choose_my_art_date</span><span class="p">(</span><span class="n">my_location</span> <span class="o">=</span> <span class="s1">&#39;Columbia University&#39;</span><span class="p">,</span> <span class="n">google_maps_key</span> <span class="o">=</span> <span class="n">API_KEY</span><span class="p">,</span> <span class="n">search_range</span> <span class="o">=</span> <span class="mi">3000</span><span class="p">,</span><span class="n">mapping</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="text-align:right head"><p></p></th>
+<th class="text-align:left head"><p>Field</p></th>
+<th class="text-align:left head"><p>Value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-align:right"><p>1</p></td>
+<td class="text-align:left"><p>Event_Name</p></td>
+<td class="text-align:left"><p>“The Hare with Amber Eyes” Exhibition</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:right"><p>3</p></td>
+<td class="text-align:left"><p>Event_Description</p></td>
+<td class="text-align:left"><p>The Jewish Museum presents The Hare with Amber Eyes, an exhibition that tells the story of the Ephrussi family—celebrated in the 2010 memoir and The New York Times bestseller of the same name by Edmund de Waal—and showcases the breadth and depth of their illustrious collection. The exhibition explores the family’s rise to prominence and splendor in the first half of the nineteenth century, followed by a focus on the prolific collector and historian of art, Charles Ephrussi, to the inter-war years, and finally World War II, when the family lost its fortune and collection to Nazi looting.</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:right"><p>5</p></td>
+<td class="text-align:left"><p>DateEnd</p></td>
+<td class="text-align:left"><p>2022-05-15</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:right"><p>7</p></td>
+<td class="text-align:left"><p>Distance</p></td>
+<td class="text-align:left"><p>2498.1888746727</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:right"><p>9</p></td>
+<td class="text-align:left"><p>Event_Lat</p></td>
+<td class="text-align:left"><p>40.785383</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:right"><p>11</p></td>
+<td class="text-align:left"><p>Event_Lon</p></td>
+<td class="text-align:left"><p>-73.957622</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:right"><p>13</p></td>
+<td class="text-align:left"><p>Event_Price_Adult</p></td>
+<td class="text-align:left"><p>10</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:right"><p>15</p></td>
+<td class="text-align:left"><p>url</p></td>
+<td class="text-align:left"><p>http://www.nyartbeat.com/event/2021/09A4</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:right"><p>17</p></td>
+<td class="text-align:left"><p>Event_Address</p></td>
+<td class="text-align:left"><p>1216 5th Ave, New York, NY 10029, USA</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:right"><p>18</p></td>
+<td class="text-align:left"><p>Restaurant_Name</p></td>
+<td class="text-align:left"><p>Lex Restaurant</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:right"><p>20</p></td>
+<td class="text-align:left"><p>Price_Level</p></td>
+<td class="text-align:left"><p>$$</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:right"><p>22</p></td>
+<td class="text-align:left"><p>Restaurant_Rating</p></td>
+<td class="text-align:left"><p>4.5</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:right"><p>24</p></td>
+<td class="text-align:left"><p>Restaurant_Address</p></td>
+<td class="text-align:left"><p>1370 Lexington Ave, New York</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:right"><p>26</p></td>
+<td class="text-align:left"><p>Restaurant_Lat</p></td>
+<td class="text-align:left"><p>40.7825</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:right"><p>28</p></td>
+<td class="text-align:left"><p>Restaurant_Lon</p></td>
+<td class="text-align:left"><p>-73.9536111</p></td>
+</tr>
+</tbody>
+</table>
+<p><img alt="map example" src="https://github.com/connixu/ny_artsy_date/blob/main/docs/map_example.png" /></p>
+<p><em>For more detailed usage cases, please refer to <a class="reference external" href="https://github.com/connixu/ny_artsy_date/blob/main/docs/vignette_example.ipynb">Usage Vignette</a>.</em></p>
+</section>
+</section>
+<section id="contributing">
+<h2>Contributing<a class="headerlink" href="#contributing" title="Permalink to this headline"></a></h2>
+<p>Interested in contributing? Check out the contributing guidelines. Please note that this project is released with a Code of Conduct. By contributing to this project, you agree to abide by its terms.</p>
+</section>
+<section id="license">
+<h2>License<a class="headerlink" href="#license" title="Permalink to this headline"></a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">ny_artsy_date</span></code> was created by Connie (Ye) Xu . It is licensed under the terms of the MIT license.</p>
+</section>
+<section id="credits">
+<h2>Credits<a class="headerlink" href="#credits" title="Permalink to this headline"></a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">ny_artsy_date</span></code> was created with <a class="reference external" href="https://cookiecutter.readthedocs.io/en/latest/"><code class="docutils literal notranslate"><span class="pre">cookiecutter</span></code></a> and the <code class="docutils literal notranslate"><span class="pre">py-pkgs-cookiecutter</span></code> <a class="reference external" href="https://github.com/py-pkgs/py-pkgs-cookiecutter">template</a>.</p>
+</section>
+<section id="contact-info">
+<h2>Contact Info<a class="headerlink" href="#contact-info" title="Permalink to this headline"></a></h2>
+<p>If you have any questions, concerns, or feedback about this package, please contact me at yx2625&#64;columbia.edu.</p>
+<div class="toctree-wrapper compound">
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="changelog.html" class="btn btn-neutral float-right" title="Changelog" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, Connie (Ye) Xu .</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
